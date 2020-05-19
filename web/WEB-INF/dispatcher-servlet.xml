@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/user/login"></mvc:exclude-mapping>
+            <mvc:exclude-mapping path="/user/register"></mvc:exclude-mapping>
+            <mvc:exclude-mapping path="/**/*.css"></mvc:exclude-mapping>
+            <mvc:exclude-mapping path="/**/*.jpg"></mvc:exclude-mapping>
+            <mvc:exclude-mapping path="/**/*.png"></mvc:exclude-mapping>
+            <mvc:exclude-mapping path="/**/*.js"></mvc:exclude-mapping>
+            <mvc:exclude-mapping path="/**/*.jpeg"></mvc:exclude-mapping>
+            <bean class="com.demo.common.AuthInterceptor"></bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.demo.common.TimeInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--<context:component-scan base-package="com.demo.controller,com.demo.common"></context:component-scan>-->
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.demo.common.MyConverter"></bean>
+
+            </list>
+        </property>
+    </bean>
+
+    <!--<mvc:annotation-driven conversion-service="conversionService" validator="validator"></mvc:annotation-driven>-->
+
+    <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">-->
+        <!--<property name="providerClass" value="org.hibernate.validator.HibernateValidator"></property>-->
+        <!--<property name="validationMessageSource" ref="messageSource"></property>-->
+    <!--</bean>-->
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>-->
+
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean>-->
+
+
+    <!--<mvc:default-servlet-handler></mvc:default-servlet-handler>-->
+    <mvc:resources mapping="/img/**" location="/img/"></mvc:resources>
+    <mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
+    <mvc:resources mapping="/jq/**" location="/jq/"></mvc:resources>
+
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+    <!--<property name="prefix" value="/"></property>-->
+    <!--<property name="suffix" value=".jsp"></property>-->
+    <!--<property name="order" value="1000"></property>-->
+    <!--</bean>-->
+
+    <!--<bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">-->
+    <!--<property name="order" value="100"></property>-->
+    <!--<property name="basename" value="my_view_define"></property>-->
+    <!--</bean>-->
+
+    <!--<bean class="org.springframework.web.servlet.view.XmlViewResolver">-->
+    <!--<property name="order" value="10"></property>-->
+    <!--<property name="location" value="classpath:my_views.xml"></property>-->
+    <!--</bean>-->
+
+    <!--<mvc:view-controller path="/" view-name="WEB-INF/home"></mvc:view-controller>-->
+    <!--<mvc:view-controller path="/home" view-name="WEB-INF/home" ></mvc:view-controller>-->
+
+    <!-- 处理文件上传请求的多部分解析器-->
+    <!--<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">-->
+    <!--<property name="defaultEncoding" value="utf-8"></property>-->
+    <!--<property name="maxInMemorySize" value="2048"></property>-->
+    <!--&lt;!&ndash;25M&ndash;&gt;-->
+    <!--<property name="maxUploadSize" value="26214400"></property>-->
+    <!--&lt;!&ndash;5M&ndash;&gt;-->
+    <!--<property name="maxUploadSizePerFile" value="5242880"></property>-->
+
+    <!--</bean>-->
+
+    <!--<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">-->
+
+    <!--<property name="basename" value="msg"></property>-->
+
+    <!--</bean>-->
+
+    <!--<bean class="com.demo.common.MyExceptionResolver"></bean>-->
+
+</beans>
