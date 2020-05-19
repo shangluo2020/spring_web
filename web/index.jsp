@@ -31,7 +31,7 @@
     <a href="${pageContext.request.contextPath}/file/list">文件列表</a><br><br>
 </div>
 <br>
-<img src="img/32.jpg" alt="许光汉" width="290px" height="333px" >
+<img src="img/32.jpg" alt="许光汉真帅" width="290px" height="333px" >
 <br><br><br>
 <button onclick="show();">test</button>
 </body>
